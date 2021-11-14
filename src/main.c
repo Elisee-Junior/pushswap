@@ -9,8 +9,8 @@
 
 int main(int ac, char **av)
 {
-    Liste *li = new_list();
+    Liste *li = init_list(li);
     li = fill_list(li, ac, av);
-    print_list(li);
+    sort(&li);
     return (0);
 }

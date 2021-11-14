@@ -1,45 +1,49 @@
 /*
 ** EPITECH PROJECT, 2021
-** list_tool
+** liste
 ** File description:
-** list_tool
+** liste
 */
 
 #include "../include/pushswap.h"
 
-Liste *new_list(void)
-{
-    return (NULL);
-}
-
 int empty_or_filled(Liste *li)
 {
-    if (li == NULL)
+    if (li->begin == NULL)
         return (0);
     return (1);
 }
 
 void print_list(Liste *li)
 {
-    if (empty_or_filled(li) == 0) {
+    node *temp = li->begin;
+
+    if (li->begin == NULL) {
         my_putstr("Nothing to display.\n");
-        return;
+        return ;
     }
-    for (; li != NULL; li = li->next) {
+    for (; temp != NULL; temp = temp->next) {
         my_putchar('[');
-        my_put_nbr(li->value);
+        my_put_nbr(temp->value);
         my_putstr("] ");
     }
     my_putchar('\n');
 }
 
-Liste *clear_list(Liste *li)
+void check_allocated(Liste *li)
 {
-    if (empty_or_filled(li) == 0)
-        return (new_list());
-    else if (empty_or_filled(li) == 1)
-        while (li != NULL)
-            li = pop_front_list(li);
+    if (li == NULL) {
+        write (2, "Erreur : probleme allocation dynamique.\n", 41);
+        exit (1);
+    }
+}
+
+void check_allocated_node(node *li)
+{
+    if (li == NULL) {
+        write (2, "Erreur : probleme allocation dynamique.\n", 41);
+        exit (1);
+    }
 }
 
 Liste *fill_list(Liste *li, int ac, char **av)
